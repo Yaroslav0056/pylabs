@@ -22,7 +22,6 @@ class Fight:
 
         while attacker.is_alive() and defender.is_alive():
             attacker.attack(defender)
-
             attacker, defender = defender, attacker
 
         if self.fighter_1.is_alive():
