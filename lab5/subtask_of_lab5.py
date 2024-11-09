@@ -9,18 +9,16 @@ class Fight:
     def start_fight(self):
         attacker = self.fighter_1
         defender = self.fighter_2
-        print(f'{attacker.name} vs {defender.name}')
 
         while attacker.is_alive() and defender.is_alive():
             attacker.attack(defender)
 
             if not defender.is_alive():
-                print(f"\033[1;31m{defender.name} has died!\033[0m")
-                break
+                return attacker, defender
 
             attacker, defender = defender, attacker
 
-        return self.fighter_1 if attacker.is_alive() else self.fighter_2
+        return attacker, defender
 
 class Tournament:
     def __init__(self, fighters):
@@ -33,6 +31,9 @@ class Tournament:
         else:
             print('The tournament is starting!!!')
             self.run_tournament()
+    @staticmethod
+    def wait_for_input():
+        input('\nPress Space then Enter to continue...')
 
     def run_tournament(self):
         current_fighters = self.fighters[:]
@@ -40,9 +41,8 @@ class Tournament:
         fight_number = 1
         round_number = 1
         while len(current_fighters) > 1:
-            if len(self.fighters) & (len(self.fighters) - 1) != 0:
-                print('The number of fighters is not suitable for the tournament')
-                return
+            Tournament.wait_for_input()
+
             print(f"\033[1m----------Round {round_number}----------\033[0m")
             shuffle(current_fighters)
             fighter_next_round = []
@@ -51,12 +51,15 @@ class Tournament:
                 fighter_1 = current_fighters[i]
                 fighter_2 = current_fighters[i + 1]
                 fight = Fight(fighter_1, fighter_2)
-                winner = fight.start_fight()
+
+
+                winner, loser = fight.start_fight()
                 fighter_next_round.append(winner)
 
                 print(f'Fight {fight_number}')
                 print(f'{fighter_1.name} vs {fighter_2.name} ----- Winner: {winner.name}')
                 print(f"Health: {fighter_1.name}: {fighter_1.health}, {fighter_2.name}: {fighter_2.health}")
+                print(f"\033[1;31m{loser.name} has died!\033[0m")
                 fight_number += 1
 
             current_fighters = fighter_next_round
