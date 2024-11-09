@@ -52,7 +52,6 @@ class Tournament:
                 fighter_2 = current_fighters[i + 1]
                 fight = Fight(fighter_1, fighter_2)
 
-
                 winner, loser = fight.start_fight()
                 fighter_next_round.append(winner)
 
