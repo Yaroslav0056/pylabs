@@ -10,7 +10,6 @@ class Fighter:
     def is_alive(self):
         return self.health > 0
 
-
 class Fight:
     def __init__(self, fighter_1, fighter_2):
         self.fighter_1 = fighter_1
@@ -35,5 +34,6 @@ def main():
 
     fight = Fight(fighter_1, fighter_2)
     fight.start_fight()
+    
 if __name__ == '__main__':
     main()
