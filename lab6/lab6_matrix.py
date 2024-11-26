@@ -43,6 +43,12 @@ class Matrix:
         geometric_means = sum_under_diagonal ** (1 / len(sums))
         return geometric_means
 
+    def __add__(self, other):
+        return Matrix([
+            [self.matrix[i][j] + other.matrix[i][j] for j in range(len(self.matrix[0]))]
+            for i in range(len(self.matrix))
+        ])
+
     def process_all(self):
         print("Початкова матриця:")
         for row in unsorted_matrix:
@@ -64,6 +70,19 @@ unsorted_matrix = [
     [-5, -83, -74, 82, -1],
     [11, 88, -5, 81, -39]
 ]
-
+other_matrix = [
+    [3, 5, 9, 24, 2],
+    [-23, 4, 37, 29, 10],
+    [0, 1, 4, -2, -5],
+    [-5, -83, -7, 82, 8],
+    [11, 88, -5, 6, -39]
+]
 matrix_sort = Matrix(unsorted_matrix)
 matrix_sort.process_all()
+
+matrix1 = Matrix(unsorted_matrix)
+matrix2 = Matrix(other_matrix)
+result = matrix1 + matrix2
+
+for row in  result.matrix:
+    print(row)
