@@ -12,14 +12,15 @@ class CustomerQueue:
             print(f"Added Regular customer: {name}")
 
     def serve_customer(self):
-        if self.vip_queue:
-            customer = self.vip_queue.pop(0)
-            print(f"Serving VIP customer: {customer}")
-        elif self.regular_queue:
-            customer = self.regular_queue.pop(0)
-            print(f"Serving Regular customer: {customer}")
-        else:
-            print("No customers to serve!")
+        for _ in range(len(self.vip_queue) + len(self.regular_queue)):
+            if self.vip_queue:
+                customer = self.vip_queue.pop(0)
+                print(f"Serving VIP customer: {customer}")
+            elif self.regular_queue:
+                customer = self.regular_queue.pop(0)
+                print(f"Serving Regular customer: {customer}")
+            else:
+                print("No customers to serve!")
 
 cafe_queue = CustomerQueue()
 
@@ -29,7 +30,4 @@ cafe_queue.add_customer("Charlie")
 cafe_queue.add_customer("Diana", is_vip=True)
 
 cafe_queue.serve_customer()
-cafe_queue.serve_customer()
-cafe_queue.serve_customer()
-cafe_queue.serve_customer()
-cafe_queue.serve_customer()
+
