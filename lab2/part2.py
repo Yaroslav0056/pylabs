@@ -3,7 +3,6 @@ b = 1.2
 h = 0.02
 d = 1e-6
 
-
 def series_sum(x, d):
     sum_value = 0
     n = 1
@@ -17,7 +16,6 @@ def series_sum(x, d):
         n += 1
 
     return 2 * sum_value
-
 
 x = a
 while x <= b:
