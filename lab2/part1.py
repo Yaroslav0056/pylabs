@@ -6,11 +6,14 @@ b = 5
 
 while a < b:
     if a < 3:
-        print(cos(a ** 0.3))
+        result_1 = cos(a ** 0.3)
+        print(round(result_1, 3))
     elif 3 <= a < 4:
-        print(sqrt(a ** 3 + log10(a)))
+        result_2 = sqrt(a ** 3 + log10(a))
+        print(round(result_2, 3))
     elif a >= 4:
-        print(1 / tan(a ** 2))
+        result_3 = 1 / tan(a ** 2)
+        print(round(result_3, 3))
     a += h
     a = round(a, 3)
     print(a)
