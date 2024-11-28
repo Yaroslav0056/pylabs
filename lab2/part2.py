@@ -22,6 +22,5 @@ def series_sum(x, d):
 x = a
 while x <= b:
     result = series_sum(x, d)
-    print(f"x = {x}, f(x) = {result}")
-    x += h
-    a = round(x, 2)
+    print(f"x = {x:.2f}, f(x) = {result:.6f}")
+    x = round(x + h, 2)
