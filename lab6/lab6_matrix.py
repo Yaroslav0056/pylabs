@@ -16,31 +16,31 @@ class Matrix:
     @staticmethod
     def sort_desc(func):
         def wrapper(self, *args, **kwargs):
-            for row in self.matrix:
-                self.insertion_sort(row)
+            for matrix_row in self.matrix:
+                self.insertion_sort(matrix_row)
             return func(self, *args, **kwargs)
         return wrapper
 
     @sort_desc
     def sort_matrix_rows(self):
-        for row in self.matrix:
-            print(row)
+        for sorted_row in self.matrix:
+            print(sorted_row)
 
     def column_sums(self):
         sums = [0] * len(self.matrix[0])
-        for row in range(1, len(self.matrix)):
-            for col in range(row):
-                sums[col] += self.matrix[row][col]
-                if sums[col] == 0:
-                    del sums[col]
+        for row_index in range(1, len(self.matrix)):
+            for col_index in range(row_index):
+                sums[col_index] += self.matrix[row_index][col_index]
+                if sums[col_index] == 0:
+                    del sums[col_index]
         return sums
 
     @staticmethod
     def geometric_mean(sums):
-        sum_under_diagonal = 1
+        product = 1
         for s in sums:
-            sum_under_diagonal *= abs(s)
-        geometric_means = sum_under_diagonal ** (1 / len(sums))
+            product *= abs(s)
+        geometric_means = product ** (1 / len(sums))
         return geometric_means
 
     def __add__(self, other):
@@ -51,8 +51,8 @@ class Matrix:
 
     def process_all(self):
         print("Початкова матриця:")
-        for row in unsorted_matrix:
-            print(row)
+        for initial_row in unsorted_matrix:
+            print(initial_row)
 
         print("\nВідсортована матриця:")
         self.sort_matrix_rows()
@@ -77,6 +77,7 @@ other_matrix = [
     [-5, -83, -7, 82, 8],
     [11, 88, -5, 6, -39]
 ]
+
 matrix_sort = Matrix(unsorted_matrix)
 matrix_sort.process_all()
 
@@ -84,5 +85,6 @@ matrix1 = Matrix(unsorted_matrix)
 matrix2 = Matrix(other_matrix)
 result = matrix1 + matrix2
 
-for row in  result.matrix:
-    print(row)
+print("\nРезультат додавання двох матриць:")
+for result_row in result.matrix:
+    print(result_row)
